@@ -956,195 +956,6 @@
     .s-card.hero-card .s-features li { color: rgba(253,234,173,0.72); }
     .s-card.hero-card .s-features li::before { color: var(--gold); }
 
-    /* ── PRICING ──────────────────────────── */
-    #pricing {
-      background: var(--fg);
-      padding: 7rem 5vw;
-      position: relative;
-      overflow: hidden;
-    }
-    #pricing::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 80% 20%, rgba(135,175,233,0.12) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .pricing-inner { max-width: 1060px; margin: 0 auto; position: relative; z-index: 1; }
-    .pricing-head {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-    .pricing-head .sec-label { color: rgba(135,175,233,0.9); }
-    .pricing-head .sec-title { color: var(--bg); margin-bottom: 0; }
-    .pricing-head .sec-title em { color: var(--gold); }
-    .pricing-tabs {
-      display: flex;
-      gap: 0.5rem;
-      background: rgba(255,255,255,0.08);
-      border-radius: 100px;
-      padding: 0.3rem;
-      align-self: flex-start;
-    }
-    .ptab {
-      border: none;
-      background: transparent;
-      color: rgba(253,234,173,0.6);
-      font-family: 'Inter Tight', system-ui, sans-serif;
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.45rem 1.1rem;
-      border-radius: 100px;
-      cursor: pointer;
-      transition: background 0.25s, color 0.25s;
-      white-space: nowrap;
-    }
-    .ptab.active {
-      background: rgba(253,234,173,0.18);
-      color: var(--bg);
-    }
-    .pricing-panels { position: relative; }
-    .pricing-panel { display: none; }
-    .pricing-panel.open { display: block; animation: panelIn 0.4s var(--ease) forwards; }
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-    }
-    .price-card {
-      border-radius: 20px;
-      padding: 2.25rem 2rem;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(253,234,173,0.12);
-      transition: border-color 0.3s, transform 0.3s var(--ease);
-      position: relative;
-    }
-    .price-card:hover {
-      border-color: rgba(253,234,173,0.3);
-      transform: translateY(-4px);
-    }
-    .price-card.featured {
-      background: var(--bg);
-      border-color: transparent;
-    }
-    .price-badge {
-      position: absolute;
-      top: -0.6rem; left: 50%;
-      transform: translateX(-50%);
-      background: var(--gold);
-      color: #fff;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.8rem;
-      border-radius: 100px;
-      white-space: nowrap;
-    }
-    .price-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: rgba(253,234,173,0.9);
-      margin-bottom: 0.4rem;
-    }
-    .price-card.featured .price-name { color: var(--fg); }
-    .price-tagline {
-      font-size: 0.82rem;
-      color: rgba(253,234,173,0.5);
-      margin-bottom: 1.5rem;
-      line-height: 1.5;
-    }
-    .price-card.featured .price-tagline { color: var(--mid); }
-    .price-amount {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem;
-      font-weight: 700;
-      color: var(--bg);
-      line-height: 1;
-      margin-bottom: 0.3rem;
-    }
-    .price-card.featured .price-amount { color: var(--fg); }
-    .price-amount span {
-      font-size: 1rem;
-      font-family: 'Inter Tight', system-ui, sans-serif;
-      font-weight: 400;
-      opacity: 0.65;
-    }
-    .price-period {
-      font-size: 0.75rem;
-      color: rgba(253,234,173,0.45);
-      margin-bottom: 1.75rem;
-    }
-    .price-card.featured .price-period { color: var(--mid); }
-    .price-divider {
-      border: none;
-      border-top: 1px solid rgba(253,234,173,0.1);
-      margin-bottom: 1.5rem;
-    }
-    .price-card.featured .price-divider { border-color: var(--border); }
-    .price-feats {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
-      margin-bottom: 2rem;
-    }
-    .price-feats li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
-      font-size: 0.85rem;
-      color: rgba(253,234,173,0.72);
-      line-height: 1.45;
-    }
-    .price-card.featured .price-feats li { color: var(--fg); }
-    .price-feats li::before {
-      content: '+';
-      font-weight: 700;
-      color: var(--gold);
-      flex-shrink: 0;
-    }
-    .price-card.featured .price-feats li::before { color: var(--accent); }
-    .price-cta {
-      display: block;
-      text-align: center;
-      padding: 0.85rem 1.5rem;
-      border-radius: 100px;
-      font-family: 'Inter Tight', system-ui, sans-serif;
-      font-size: 0.9rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: transform 0.2s var(--ease), box-shadow 0.2s, opacity 0.2s;
-      border: 1.5px solid rgba(253,234,173,0.25);
-      color: var(--bg);
-      background: transparent;
-    }
-    .price-cta:hover { opacity: 0.85; transform: translateY(-1px); }
-    .price-card.featured .price-cta {
-      background: var(--fg);
-      border-color: transparent;
-      color: var(--bg);
-      box-shadow: 0 8px 24px rgba(124,15,39,0.25);
-    }
-    .price-card.featured .price-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(124,15,39,0.35); }
-    .price-note {
-      text-align: center;
-      margin-top: 2.5rem;
-      font-size: 0.82rem;
-      color: rgba(253,234,173,0.4);
-    }
-    .price-note a { color: rgba(253,234,173,0.65); }
-
-    @media (max-width: 900px) {
-      .pricing-grid { grid-template-columns: 1fr; }
-      .pricing-head { flex-direction: column; align-items: flex-start; }
-    }
-
     /* ── FAQ ──────────────────────────────── */
     #faq { background: var(--bg-3); padding: 7rem 5vw; }
     .faq-inner { max-width: 760px; margin: 0 auto; }
@@ -1266,7 +1077,7 @@
     body { font-family: var(--sans); font-size: 17px; letter-spacing: -0.011em; }
 
     .hero-title, .sec-title, .booking-title, .s-title, .p-title, .t-name,
-    .price-name, .price-amount, .stat-num, .faq-q, .panel-box h3, .f-success h4,
+    .stat-num, .faq-q, .panel-box h3, .f-success h4,
     .g-label, .intent-quote, .btn-main, .btn-outline, .marquee-tag, .p-num {
       font-family: var(--sans);
     }
@@ -1276,7 +1087,7 @@
     }
     .hero-title { font-size: clamp(3rem, 7.2vw, 6.6rem); }
     .sec-title { font-size: clamp(2.3rem, 4.6vw, 4.4rem); }
-    .s-title, .p-title, .price-name { font-weight: 700; letter-spacing: -0.025em; }
+    .s-title, .p-title { font-weight: 700; letter-spacing: -0.025em; }
     .stat-num { font-weight: 700; letter-spacing: -0.04em; }
     .faq-q { font-weight: 600; font-size: 1.2rem; letter-spacing: -0.02em; }
     .marquee-tag { font-weight: 600; font-size: 0.82rem; letter-spacing: 0.12em; }
@@ -1319,7 +1130,7 @@
     /* surfaces + cards: flat, hairline, 28px */
     #services, #testimonials { background: var(--paper); }
     #process, #faq { background: #fff; }
-    .s-card, .t-card, .price-card, .panel-box, .intent-card, .calendly-wrap, .g-item { border-radius: var(--r-card); }
+    .s-card, .t-card, .panel-box, .intent-card, .calendly-wrap, .g-item { border-radius: var(--r-card); }
     .s-card { padding: 2.4rem; border-color: transparent; background: #fff; }
     .s-card:nth-child(2), .s-card:nth-child(5) { background: var(--blue-wash); }
     .s-card:nth-child(3) { background: var(--coral-wash); }
@@ -1362,7 +1173,6 @@
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#gallery">Réalisations</a></li>
-    <li><a href="#pricing">Tarifs</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#booking" class="nav-rdv">Prendre RDV</a></li>
   </ul>
@@ -1794,271 +1604,6 @@
   </div>
 </section>
 
-<!-- ── PRICING ────────────────────────────────── -->
-<section id="pricing">
-  <div class="pricing-inner">
-
-    <div class="pricing-head">
-      <div>
-        <div class="sec-label">Nos formules</div>
-        <h2 class="sec-title">Une offre <em>transparente</em></h2>
-      </div>
-      <div class="pricing-tabs" role="tablist">
-        <button class="ptab active" data-pricing="mensuel" role="tab" aria-selected="true">Mensuel</button>
-        <button class="ptab" data-pricing="trimestriel" role="tab" aria-selected="false">Trimestriel</button>
-        <button class="ptab" data-pricing="annuel" role="tab" aria-selected="false">Annuel −15%</button>
-      </div>
-    </div>
-
-    <div class="pricing-panels">
-
-      <!-- Mensuel -->
-      <div class="pricing-panel open" id="pricing-mensuel">
-        <div class="pricing-grid">
-
-          <div class="price-card reveal">
-            <p class="price-name">Essentiel</p>
-            <p class="price-tagline">Idéal pour démarrer votre présence locale</p>
-            <div class="price-amount">349 <span>€ HT</span></div>
-            <p class="price-period">par mois · sans engagement</p>
-            <hr class="price-divider" />
-            <ul class="price-feats">
-              <li>Gestion d'1 réseau social</li>
-              <li>12 publications / mois</li>
-              <li>Stories hebdomadaires</li>
-              <li>Modération des commentaires</li>
-              <li>Rapport mensuel</li>
-            </ul>
-            <a href="#booking" class="price-cta">Commencer</a>
-          </div>
-
-          <div class="price-card featured reveal">
-            <div class="price-badge">Le plus populaire</div>
-            <p class="price-name">Standard</p>
-            <p class="price-tagline">La formule complète pour accélérer votre croissance</p>
-            <div class="price-amount">599 <span>€ HT</span></div>
-            <p class="price-period">par mois · sans engagement</p>
-            <hr class="price-divider" />
-            <ul class="price-feats">
-              <li>Gestion de 2 réseaux sociaux</li>
-              <li>20 publications / mois</li>
-              <li>Stories + Reels optimisés</li>
-              <li>Community management</li>
-              <li>Meta Ads (budget inclus 50€)</li>
-              <li>Rapport mensuel détaillé</li>
-            </ul>
-            <a href="#booking" class="price-cta">Commencer</a>
-          </div>
-
-          <div class="price-card reveal">
-            <p class="price-name">Premium</p>
-            <p class="price-tagline">Accompagnement complet clé en main</p>
-            <div class="price-amount">Sur <span style="font-size:1.6rem;opacity:1;">devis</span></div>
-            <p class="price-period">adapté à votre situation</p>
-            <hr class="price-divider" />
-            <ul class="price-feats">
-              <li>Gestion multi-réseaux (3+)</li>
-              <li>Contenu illimité</li>
-              <li>Tournage mensuel sur site</li>
-              <li>Meta + Google Ads complet</li>
-              <li>Suivi hebdomadaire dédié</li>
-              <li>Stratégie 100% sur-mesure</li>
-            </ul>
-            <a href="#booking" class="price-cta">Nous contacter</a>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Trimestriel -->
-      <div class="pricing-panel" id="pricing-trimestriel">
-        <div class="pricing-grid">
-          <div class="price-card reveal">
-            <p class="price-name">Essentiel</p>
-            <p class="price-tagline">Idéal pour démarrer votre présence locale</p>
-            <div class="price-amount">319 <span>€ HT</span></div>
-            <p class="price-period">par mois · engagement 3 mois</p>
-            <hr class="price-divider" />
-            <ul class="price-feats">
-              <li>Gestion d'1 réseau social</li>
-              <li>12 publications / mois</li>
-              <li>Stories hebdomadaires</li>
-              <li>Modération des commentaires</li>
-              <li>Rapport mensuel</li>
-            </ul>
-            <a href="#booking" class="price-cta">Commencer</a>
-          </div>
-          <div class="price-card featured reveal">
-            <div class="price-badge">Le plus populaire</div>
-            <p class="price-name">Standard</p>
-            <p class="price-tagline">La formule complète pour accélérer votre croissance</p>
-            <div class="price-amount">549 <span>€ HT</span></div>
-            <p class="price-period">par mois · engagement 3 mois</p>
-            <hr class="price-divider" />
-            <ul class="price-feats">
-              <li>Gestion de 2 réseaux sociaux</li>
-              <li>20 publications / mois</li>
-              <li>Stories + Reels optimisés</li>
-              <li>Community management</li>
-              <li>Meta Ads (budget inclus 50€)</li>
-              <li>Rapport mensuel détaillé</li>
-            </ul>
-            <a href="#booking" class="price-cta">Commencer</a>
-          </div>
-          <div class="price-card reveal">
-            <p class="price-name">Premium</p>
-            <p class="price-tagline">Accompagnement complet clé en main</p>
-            <div class="price-amount">Sur <span style="font-size:1.6rem;opacity:1;">devis</span></div>
-            <p class="price-period">adapté à votre situation</p>
-            <hr class="price-divider" />
-            <ul class="price-feats">
-              <li>Gestion multi-réseaux (3+)</li>
-              <li>Contenu illimité</li>
-              <li>Tournage mensuel sur site</li>
-              <li>Meta + Google Ads complet</li>
-              <li>Suivi hebdomadaire dédié</li>
-              <li>Stratégie 100% sur-mesure</li>
-            </ul>
-            <a href="#booking" class="price-cta">Nous contacter</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Annuel -->
-      <div class="pricing-panel" id="pricing-annuel">
-        <div class="pricing-grid">
-          <div class="price-card reveal">
-            <p class="price-name">Essentiel</p>
-            <p class="price-tagline">Idéal pour démarrer votre présence locale</p>
-            <div class="price-amount">297 <span>€ HT</span></div>
-            <p class="price-period">par mois · engagement 12 mois</p>
-            <hr class="price-divider" />
-            <ul class="price-feats">
-              <li>Gestion d'1 réseau social</li>
-              <li>12 publications / mois</li>
-              <li>Stories hebdomadaires</li>
-              <li>Modération des commentaires</li>
-              <li>Rapport mensuel</li>
-            </ul>
-            <a href="#booking" class="price-cta">Commencer</a>
-          </div>
-          <div class="price-card featured reveal">
-            <div class="price-badge">Le plus populaire</div>
-            <p class="price-name">Standard</p>
-            <p class="price-tagline">La formule complète pour accélérer votre croissance</p>
-            <div class="price-amount">509 <span>€ HT</span></div>
-            <p class="price-period">par mois · engagement 12 mois</p>
-            <hr class="price-divider" />
-            <ul class="price-feats">
-              <li>Gestion de 2 réseaux sociaux</li>
-              <li>20 publications / mois</li>
-              <li>Stories + Reels optimisés</li>
-              <li>Community management</li>
-              <li>Meta Ads (budget inclus 50€)</li>
-              <li>Rapport mensuel détaillé</li>
-            </ul>
-            <a href="#booking" class="price-cta">Commencer</a>
-          </div>
-          <div class="price-card reveal">
-            <p class="price-name">Premium</p>
-            <p class="price-tagline">Accompagnement complet clé en main</p>
-            <div class="price-amount">Sur <span style="font-size:1.6rem;opacity:1;">devis</span></div>
-            <p class="price-period">adapté à votre situation</p>
-            <hr class="price-divider" />
-            <ul class="price-feats">
-              <li>Gestion multi-réseaux (3+)</li>
-              <li>Contenu illimité</li>
-              <li>Tournage mensuel sur site</li>
-              <li>Meta + Google Ads complet</li>
-              <li>Suivi hebdomadaire dédié</li>
-              <li>Stratégie 100% sur-mesure</li>
-            </ul>
-            <a href="#booking" class="price-cta">Nous contacter</a>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /pricing-panels -->
-
-    <p class="price-note">Tous les prix sont HT · TVA 20% · <a href="#booking">Besoin d'un devis personnalisé ?</a></p>
-
-  </div>
-</section>
-
-<!-- ── FAQ ────────────────────────────────────── -->
-<section id="faq">
-  <div class="faq-inner">
-    <div class="faq-head">
-      <div class="sec-label">Questions fréquentes</div>
-      <h2 class="sec-title">Vos <em>doutes,</em> clarifiés.</h2>
-    </div>
-
-    <div class="faq-list">
-
-      <details class="faq-item">
-        <summary class="faq-q">
-          En combien de temps voit-on des résultats ?
-          <span class="faq-icon">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </span>
-        </summary>
-        <p class="faq-a">Les premiers résultats (engagement, visibilité, abonnés) sont visibles dès le premier mois. Les résultats commerciaux significatifs (leads, réservations, chiffre d'affaire) apparaissent généralement entre 2 et 4 mois selon votre secteur et votre marché local.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">
-          Travaillez-vous avec tous types d'entreprises ?
-          <span class="faq-icon">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </span>
-        </summary>
-        <p class="faq-a">Oui — producteurs, artisans, commerces, restaurants, hôtels, cabinets, agences… Notre cœur de métier, ce sont les entreprises et producteurs locaux, mais nous accompagnons aussi des structures plus importantes, avec la même rigueur et la même proximité. Notre spécialité : comprendre votre marché et votre territoire.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">
-          Est-ce que je garde la main sur mes réseaux ?
-          <span class="faq-icon">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </span>
-        </summary>
-        <p class="faq-a">Absolument. Vos comptes vous appartiennent — nous travaillons avec vos accès, mais vous restez propriétaire de tout. Vous pouvez suivre chaque publication avant diffusion, et nous ajustons le niveau d'autonomie selon vos préférences.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">
-          Que comprend exactement le "contenu" ?
-          <span class="faq-icon">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </span>
-        </summary>
-        <p class="faq-a">Selon votre formule : visuels statiques (photos, cartes, citations), Reels et courtes vidéos, Stories quotidiennes, et contenu graphique (flyers digitaux, affiches). Pour la formule Premium, nous nous déplaçons chez vous pour des sessions photo/vidéo mensuelles.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">
-          Y a-t-il un engagement de durée ?
-          <span class="faq-icon">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </span>
-        </summary>
-        <p class="faq-a">La formule mensuelle est sans engagement. Les formules trimestrielle et annuelle offrent des tarifs réduits en échange d'un engagement sur la durée. Dans tous les cas, nous travaillons avec un préavis de 30 jours si vous souhaitez mettre fin à la collaboration.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">
-          Comment se passe l'onboarding ?
-          <span class="faq-icon">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </span>
-        </summary>
-        <p class="faq-a">Après signature, nous vous envoyons un questionnaire de démarrage (10 min), puis un appel stratégique de 45 min pour aligner la vision. Sous 7 jours, vous recevez votre première stratégie éditoriale. Les premières publications partent dès la semaine suivante.</p>
-      </details>
-
-    </div>
-  </div>
-</section>
-
 <!-- ── BOOKING ────────────────────────────────── -->
 <section id="booking">
   <div class="booking-inner">
@@ -2240,6 +1785,80 @@
   </div><!-- /booking-inner -->
 </section>
 
+<!-- ── FAQ ────────────────────────────────────── -->
+<section id="faq">
+  <div class="faq-inner">
+    <div class="faq-head">
+      <div class="sec-label">Questions fréquentes</div>
+      <h2 class="sec-title">Vos <em>doutes,</em> clarifiés.</h2>
+    </div>
+
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          En combien de temps voit-on des résultats ?
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+        </summary>
+        <p class="faq-a">Les premiers résultats (engagement, visibilité, abonnés) sont visibles dès le premier mois. Les résultats commerciaux significatifs (leads, réservations, chiffre d'affaire) apparaissent généralement entre 2 et 4 mois selon votre secteur et votre marché local.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Travaillez-vous avec tous types d'entreprises ?
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+        </summary>
+        <p class="faq-a">Oui — producteurs, artisans, commerces, restaurants, hôtels, cabinets, agences… Notre cœur de métier, ce sont les entreprises et producteurs locaux, mais nous accompagnons aussi des structures plus importantes, avec la même rigueur et la même proximité. Notre spécialité : comprendre votre marché et votre territoire.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Est-ce que je garde la main sur mes réseaux ?
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+        </summary>
+        <p class="faq-a">Absolument. Vos comptes vous appartiennent — nous travaillons avec vos accès, mais vous restez propriétaire de tout. Vous pouvez suivre chaque publication avant diffusion, et nous ajustons le niveau d'autonomie selon vos préférences.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Que comprend exactement le "contenu" ?
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+        </summary>
+        <p class="faq-a">Selon votre formule : visuels statiques (photos, cartes, citations), Reels et courtes vidéos, Stories quotidiennes, et contenu graphique (flyers digitaux, affiches). Pour la formule Premium, nous nous déplaçons chez vous pour des sessions photo/vidéo mensuelles.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Y a-t-il un engagement de durée ?
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+        </summary>
+        <p class="faq-a">La formule mensuelle est sans engagement. Les formules trimestrielle et annuelle offrent des tarifs réduits en échange d'un engagement sur la durée. Dans tous les cas, nous travaillons avec un préavis de 30 jours si vous souhaitez mettre fin à la collaboration.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Comment se passe l'onboarding ?
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+        </summary>
+        <p class="faq-a">Après signature, nous vous envoyons un questionnaire de démarrage (10 min), puis un appel stratégique de 45 min pour aligner la vision. Sous 7 jours, vous recevez votre première stratégie éditoriale. Les premières publications partent dès la semaine suivante.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
 <!-- ── FOOTER ─────────────────────────────────── -->
 <footer>
   <a href="#" class="footer-logo" aria-label="Prestacomm"><img src="assets/logo.png" alt="Prestacomm" /></a>
@@ -2353,16 +1972,6 @@ window.addEventListener('load', () => {
     y: -50, x: -30,
   });
 
-  /* Pricing section reveal */
-  gsap.from('.pricing-head', {
-    scrollTrigger: { trigger: '#pricing', start: 'top 75%', once: true },
-    opacity: 0, y: 30, duration: 0.9, ease: 'power3.out',
-  });
-  gsap.from('.price-card', {
-    scrollTrigger: { trigger: '.pricing-grid', start: 'top 80%', once: true },
-    opacity: 0, y: 50, duration: 0.7, ease: 'power3.out', stagger: 0.15,
-  });
-
   /* FAQ reveal */
   gsap.from('.faq-head', {
     scrollTrigger: { trigger: '#faq', start: 'top 75%', once: true },
@@ -2383,22 +1992,6 @@ window.addEventListener('load', () => {
     opacity: 0, y: 40, duration: 0.7, ease: 'power3.out', stagger: 0.14,
   });
 });
-
-/* Pricing tabs */
-(function() {
-  const tabs = document.querySelectorAll('.ptab');
-  const panels = document.querySelectorAll('.pricing-panel');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-      panels.forEach(p => p.classList.remove('open'));
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-      const target = document.getElementById('pricing-' + tab.dataset.pricing);
-      if (target) target.classList.add('open');
-    });
-  });
-})();
 
 /* Intent card interaction */
 (function() {
