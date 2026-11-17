@@ -1158,8 +1158,17 @@
     .v-card:nth-child(4) { background: var(--fg); }
     .v-card:nth-child(4) .s-title { color: var(--bg); }
     .v-card:nth-child(4) .s-text { color: rgba(253,234,173,0.8); }
-    .v-card:nth-child(4) .v-num { color: var(--gold); }
-    .v-num { display: block; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 3rem; }
+    .v-card:nth-child(4) .v-ico { background: rgba(255,255,255,0.14); color: var(--bg); }
+    .v-card:nth-child(4) .v-bars i { background: rgba(255,255,255,0.2); }
+    .v-card:nth-child(4) .v-bars i.on { background: var(--gold); }
+    .v-top { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 3rem; }
+    .v-ico { width: 3.2rem; height: 3.2rem; flex: none; border-radius: 14px; background: rgba(255,255,255,0.7); color: var(--fg); display: flex; align-items: center; justify-content: center; }
+    .v-ico svg { width: 1.5rem; height: 1.5rem; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .v-mark { display: flex; flex-direction: column; align-items: flex-end; gap: 0.45rem; }
+    .v-mark b { font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; color: var(--gold); line-height: 1; }
+    .v-bars { display: flex; gap: 4px; }
+    .v-bars i { display: block; width: 1.15rem; height: 3px; border-radius: 2px; background: rgba(124,15,39,0.12); transition: background 0.3s; }
+    .v-bars i.on { background: var(--gold); }
     @media (max-width: 900px) { .values-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 600px) { .values-grid { grid-template-columns: 1fr; } }
 
@@ -1511,10 +1520,10 @@
       <p class="sec-sub" style="margin:0 auto;">Producteurs, artisans, commerces, hôtels, restaurants et entreprises plus grandes : une même exigence, au plus près de chaque client.</p>
     </div>
     <div class="values-grid">
-      <div class="v-card reveal"><span class="v-num">01</span><h3 class="s-title">Présence</h3><p class="s-text">Un interlocuteur disponible, qui connaît votre activité, votre territoire et vos clients.</p></div>
-      <div class="v-card reveal"><span class="v-num">02</span><h3 class="s-title">Rigueur</h3><p class="s-text">Un calendrier tenu, des publications soignées et un suivi chiffré chaque mois.</p></div>
-      <div class="v-card reveal"><span class="v-num">03</span><h3 class="s-title">Expertise</h3><p class="s-text">Stratégie, création, publicité : une maîtrise complète des réseaux, adaptée à votre marché local.</p></div>
-      <div class="v-card reveal"><span class="v-num">04</span><h3 class="s-title">Premium</h3><p class="s-text">Des contenus travaillés avec exigence, à la hauteur de la qualité de vos produits et de votre savoir-faire.</p></div>
+      <div class="v-card reveal"><div class="v-top"><span class="v-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg></span><span class="v-mark"><b>01</b><span class="v-bars" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></span></span></div><h3 class="s-title">Présence</h3><p class="s-text">Un interlocuteur disponible, qui connaît votre activité, votre territoire et vos clients.</p></div>
+      <div class="v-card reveal"><div class="v-top"><span class="v-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17M9 15l2.2 2.2L15.5 13"/></svg></span><span class="v-mark"><b>02</b><span class="v-bars" aria-hidden="true"><i></i><i class="on"></i><i></i><i></i></span></span></div><h3 class="s-title">Rigueur</h3><p class="s-text">Un calendrier tenu, des publications soignées et un suivi chiffré chaque mois.</p></div>
+      <div class="v-card reveal"><div class="v-top"><span class="v-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="0.8"/></svg></span><span class="v-mark"><b>03</b><span class="v-bars" aria-hidden="true"><i></i><i></i><i class="on"></i><i></i></span></span></div><h3 class="s-title">Expertise</h3><p class="s-text">Stratégie, création, publicité : une maîtrise complète des réseaux, adaptée à votre marché local.</p></div>
+      <div class="v-card reveal"><div class="v-top"><span class="v-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 17l-5.2 2.7 1-5.9L3.5 9.7l5.9-.8z"/></svg></span><span class="v-mark"><b>04</b><span class="v-bars" aria-hidden="true"><i></i><i></i><i></i><i class="on"></i></span></span></div><h3 class="s-title">Premium</h3><p class="s-text">Des contenus travaillés avec exigence, à la hauteur de la qualité de vos produits et de votre savoir-faire.</p></div>
     </div>
   </div>
 </section>
