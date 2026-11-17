@@ -305,82 +305,68 @@
     }
     @media (prefers-reduced-motion: reduce) { .logo-track { animation: none; } }
 
-    /* ── MARQUEE ──────────────────────────── */
-    .marquee-wrap {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-      padding: 1.25rem 0;
-    }
-    .marquee-inner {
-      display: flex;
-      gap: 3.5rem;
-      width: max-content;
-      animation: slide 22s linear infinite;
-    }
-    .marquee-wrap:hover .marquee-inner { animation-play-state: paused; }
-    @keyframes slide {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-    .marquee-tag {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--mid);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      white-space: nowrap;
-    }
-    .m-dot {
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
-    }
-
     /* ── STATS ────────────────────────────── */
-    #stats {
-      background: var(--fg);
-      border-bottom: 1px solid rgba(124,15,39,0.2);
-      padding: 4.5rem 5vw;
-      color: var(--bg);
-    }
-    .stats-row {
+    #stats { padding: 7rem 5vw 1rem; }
+    .stats-head { text-align: center; margin-bottom: 3.5rem; }
+    .stats-head .sec-label { justify-content: center; }
+    .stats-head .sec-sub { margin: 0 auto; }
+    .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
+      gap: 1.1rem;
       max-width: 1300px;
       margin: 0 auto;
     }
-    .stat-cell {
-      padding: 1.5rem 2rem;
-      border-right: 1px solid rgba(253,234,173,0.18);
+    .stat-tile {
+      --tile: var(--blue-wash);
+      display: flex;
+      flex-direction: column;
+      min-height: 17rem;
+      padding: 1.9rem;
+      border-radius: var(--r-card);
+      background: var(--tile);
+      transition: translate 0.45s var(--ease), box-shadow 0.45s var(--ease);
     }
-    .stat-cell:last-child { border-right: none; }
+    .stat-tile:nth-child(2) { --tile: var(--coral-wash); }
+    .stat-tile:nth-child(3) { --tile: #FEF1CB; }
+    .stat-tile:nth-child(4) { --tile: var(--bg-3); }
+    .stat-tile:hover { translate: 0 -6px; box-shadow: 0 22px 40px -24px rgba(124,15,39,0.4); }
+    .stat-ico {
+      width: 3rem; height: 3rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.75);
+      color: var(--fg);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .stat-ico svg { width: 1.4rem; height: 1.4rem; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
     .stat-num {
-      font-family: 'Cormorant Garamond', serif;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.06em;
       font-weight: 700;
-      font-size: clamp(2.8rem, 4vw, 4rem);
-      letter-spacing: -0.02em;
+      font-size: clamp(3rem, 4.4vw, 4.2rem);
+      letter-spacing: -0.04em;
       line-height: 1;
-      margin-bottom: 0.5rem;
-      color: var(--bg);
+      margin: 2.2rem 0 0.8rem;
+      color: var(--fg);
+      font-variant-numeric: tabular-nums;
     }
     .stat-num sub {
-      font-size: 0.55em;
+      font-size: 0.42em;
+      line-height: 1;
+      margin-top: 0.3em;
       color: var(--gold);
       vertical-align: baseline;
       font-weight: 700;
+      letter-spacing: 0;
     }
     .stat-desc {
-      font-size: 0.875rem;
-      color: rgba(253,234,173,0.72);
+      font-size: 0.92rem;
+      color: var(--mid);
       line-height: 1.55;
-      max-width: 200px;
+      max-width: 24ch;
     }
+    @media (prefers-reduced-motion: reduce) { .stat-tile { transition: none; } }
 
     /* ── SECTION COMMONS ─────────────────── */
     .sec { padding: 7rem 5vw; }
@@ -521,45 +507,60 @@
       align-items: flex-end;
       margin-bottom: 2.5rem;
     }
-    .gallery-masonry {
-      columns: 3;
-      column-gap: 1rem;
-    }
-    .g-item {
-      break-inside: avoid;
-      margin-bottom: 1rem;
-      border-radius: 18px;
-      overflow: hidden;
+    .fan-layout { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
+    .fan-card {
       position: relative;
-      cursor: pointer;
+      margin: 0;
+      width: 14rem;
+      aspect-ratio: 3 / 4;
+      border: 5px solid #fff;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 20px 40px -18px rgba(124,15,39,0.5);
     }
-    .g-item img {
-      width: 100%;
-      display: block;
-      transition: transform 0.65s var(--ease);
-    }
-    .g-item:hover img { transform: scale(1.05); }
-    .g-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(124,15,39,0.88) 0%, transparent 55%);
+    .fan-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    .fan-cap {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 3rem 1.1rem 1rem;
+      background: linear-gradient(to top, rgba(124,15,39,0.9) 0%, transparent 100%);
       opacity: 0;
       transition: opacity 0.35s;
-      display: flex;
-      align-items: flex-end;
-      padding: 1.4rem;
     }
-    .g-item:hover .g-overlay { opacity: 1; }
-    .g-label {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: #fff;
+    .fan-card:hover .fan-cap { opacity: 1; }
+    .fan-cap b { display: block; font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.05rem; color: #fff; }
+    .fan-cap span { display: block; margin-top: 3px; font-size: 0.77rem; color: rgba(255,255,255,0.72); }
+    @media (hover: none) { .fan-cap { opacity: 1; } }
+    .fan-nav { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1.5rem; }
+    .fan-arrow {
+      width: 3rem; height: 3rem; border-radius: 50%;
+      border: 1.5px solid var(--border); background: #fff; color: var(--fg);
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+      transition: background 0.25s, color 0.25s;
     }
-    .g-sub {
-      font-size: 0.77rem;
-      color: rgba(255,255,255,0.62);
-      margin-top: 3px;
+    .fan-arrow:hover { background: var(--fg); color: var(--bg); }
+    .fan-arrow:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+    .fan-dots { display: flex; gap: 0.5rem; }
+    .fan-dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--border); transition: transform 0.3s, background 0.3s; }
+    .fan-dots i.on { background: var(--fg); transform: scale(1.3); }
+    /* fan layout only when JS is running; otherwise a simple wrapped grid */
+    .js-ready .fan-layout { display: block; position: relative; isolation: isolate; height: 31rem; max-width: 80rem; margin: 0 auto; }
+    .js-ready .fan-card { position: absolute; left: 50%; top: 50%; width: 16rem; height: 22rem; aspect-ratio: auto; margin: -11rem 0 0 -8rem; opacity: 0; will-change: transform; }
+    @media (max-width: 1023px) {
+      .js-ready .fan-layout { height: 28rem; }
+      .js-ready .fan-card { width: 14.5rem; height: 20rem; margin: -10rem 0 0 -7.25rem; }
+    }
+    @media (max-width: 767px) {
+      .js-ready .fan-layout { height: 25rem; }
+      .js-ready .fan-card { width: 13rem; height: 18rem; margin: -9rem 0 0 -6.5rem; }
+    }
+    @media (max-width: 639px) {
+      .js-ready .fan-layout { height: 23rem; }
+      .js-ready .fan-card { width: 11.5rem; height: 16rem; margin: -8rem 0 0 -5.75rem; }
+    }
+    @media (max-width: 479px) {
+      .js-ready .fan-layout { height: 20rem; }
+      .js-ready .fan-card { width: 10rem; height: 14rem; margin: -7rem 0 0 -5rem; }
     }
     .gallery-cta {
       text-align: center;
@@ -579,38 +580,40 @@
     .process-steps::before {
       content: '';
       position: absolute;
-      top: 1.9rem;
-      left: calc(12.5% + 1rem);
-      right: calc(12.5% + 1rem);
+      top: calc(1.65rem - 0.5px);
+      left: 12.5%;
+      right: 12.5%;
       height: 1px;
-      background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent));
-      opacity: 0.5;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      opacity: 0.6;
+      transform: scaleX(var(--line, 1));
+      transform-origin: left center;
     }
     .p-step {
       text-align: center;
       padding: 0 1.75rem;
     }
     .p-num {
-      width: 3.8rem; height: 3.8rem;
+      width: 3.3rem; height: 3.3rem;
       border-radius: 50%;
-      border: 1px solid var(--border);
-      background: var(--bg);
+      border: 0;
+      background: var(--fg);
+      box-shadow: 0 0 0 7px var(--blue-wash);
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 1.75rem;
       font-family: 'Cormorant Garamond', serif;
       font-weight: 700;
-      font-size: 1rem;
-      color: #3a6fa8;
+      font-size: 0.95rem;
+      color: #fff;
       position: relative;
       z-index: 1;
-      transition: background 0.3s, border-color 0.3s, color 0.3s;
+      transition: background 0.3s, box-shadow 0.3s;
     }
     .p-step:hover .p-num {
-      background: var(--fg);
-      border-color: var(--fg);
-      color: var(--bg);
+      background: var(--gold);
+      box-shadow: 0 0 0 7px rgba(230,79,97,0.18);
     }
     .p-title {
       font-family: 'Cormorant Garamond', serif;
@@ -956,195 +959,6 @@
     .s-card.hero-card .s-features li { color: rgba(253,234,173,0.72); }
     .s-card.hero-card .s-features li::before { color: var(--gold); }
 
-    /* ── PRICING ──────────────────────────── */
-    #pricing {
-      background: var(--fg);
-      padding: 7rem 5vw;
-      position: relative;
-      overflow: hidden;
-    }
-    #pricing::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 80% 20%, rgba(135,175,233,0.12) 0%, transparent 60%);
-      pointer-events: none;
-    }
-    .pricing-inner { max-width: 1060px; margin: 0 auto; position: relative; z-index: 1; }
-    .pricing-head {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-    .pricing-head .sec-label { color: rgba(135,175,233,0.9); }
-    .pricing-head .sec-title { color: var(--bg); margin-bottom: 0; }
-    .pricing-head .sec-title em { color: var(--gold); }
-    .pricing-tabs {
-      display: flex;
-      gap: 0.5rem;
-      background: rgba(255,255,255,0.08);
-      border-radius: 100px;
-      padding: 0.3rem;
-      align-self: flex-start;
-    }
-    .ptab {
-      border: none;
-      background: transparent;
-      color: rgba(253,234,173,0.6);
-      font-family: 'Inter Tight', system-ui, sans-serif;
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.45rem 1.1rem;
-      border-radius: 100px;
-      cursor: pointer;
-      transition: background 0.25s, color 0.25s;
-      white-space: nowrap;
-    }
-    .ptab.active {
-      background: rgba(253,234,173,0.18);
-      color: var(--bg);
-    }
-    .pricing-panels { position: relative; }
-    .pricing-panel { display: none; }
-    .pricing-panel.open { display: block; animation: panelIn 0.4s var(--ease) forwards; }
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-    }
-    .price-card {
-      border-radius: 20px;
-      padding: 2.25rem 2rem;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(253,234,173,0.12);
-      transition: border-color 0.3s, transform 0.3s var(--ease);
-      position: relative;
-    }
-    .price-card:hover {
-      border-color: rgba(253,234,173,0.3);
-      transform: translateY(-4px);
-    }
-    .price-card.featured {
-      background: var(--bg);
-      border-color: transparent;
-    }
-    .price-badge {
-      position: absolute;
-      top: -0.6rem; left: 50%;
-      transform: translateX(-50%);
-      background: var(--gold);
-      color: #fff;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.8rem;
-      border-radius: 100px;
-      white-space: nowrap;
-    }
-    .price-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: rgba(253,234,173,0.9);
-      margin-bottom: 0.4rem;
-    }
-    .price-card.featured .price-name { color: var(--fg); }
-    .price-tagline {
-      font-size: 0.82rem;
-      color: rgba(253,234,173,0.5);
-      margin-bottom: 1.5rem;
-      line-height: 1.5;
-    }
-    .price-card.featured .price-tagline { color: var(--mid); }
-    .price-amount {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem;
-      font-weight: 700;
-      color: var(--bg);
-      line-height: 1;
-      margin-bottom: 0.3rem;
-    }
-    .price-card.featured .price-amount { color: var(--fg); }
-    .price-amount span {
-      font-size: 1rem;
-      font-family: 'Inter Tight', system-ui, sans-serif;
-      font-weight: 400;
-      opacity: 0.65;
-    }
-    .price-period {
-      font-size: 0.75rem;
-      color: rgba(253,234,173,0.45);
-      margin-bottom: 1.75rem;
-    }
-    .price-card.featured .price-period { color: var(--mid); }
-    .price-divider {
-      border: none;
-      border-top: 1px solid rgba(253,234,173,0.1);
-      margin-bottom: 1.5rem;
-    }
-    .price-card.featured .price-divider { border-color: var(--border); }
-    .price-feats {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
-      margin-bottom: 2rem;
-    }
-    .price-feats li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
-      font-size: 0.85rem;
-      color: rgba(253,234,173,0.72);
-      line-height: 1.45;
-    }
-    .price-card.featured .price-feats li { color: var(--fg); }
-    .price-feats li::before {
-      content: '+';
-      font-weight: 700;
-      color: var(--gold);
-      flex-shrink: 0;
-    }
-    .price-card.featured .price-feats li::before { color: var(--accent); }
-    .price-cta {
-      display: block;
-      text-align: center;
-      padding: 0.85rem 1.5rem;
-      border-radius: 100px;
-      font-family: 'Inter Tight', system-ui, sans-serif;
-      font-size: 0.9rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: transform 0.2s var(--ease), box-shadow 0.2s, opacity 0.2s;
-      border: 1.5px solid rgba(253,234,173,0.25);
-      color: var(--bg);
-      background: transparent;
-    }
-    .price-cta:hover { opacity: 0.85; transform: translateY(-1px); }
-    .price-card.featured .price-cta {
-      background: var(--fg);
-      border-color: transparent;
-      color: var(--bg);
-      box-shadow: 0 8px 24px rgba(124,15,39,0.25);
-    }
-    .price-card.featured .price-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(124,15,39,0.35); }
-    .price-note {
-      text-align: center;
-      margin-top: 2.5rem;
-      font-size: 0.82rem;
-      color: rgba(253,234,173,0.4);
-    }
-    .price-note a { color: rgba(253,234,173,0.65); }
-
-    @media (max-width: 900px) {
-      .pricing-grid { grid-template-columns: 1fr; }
-      .pricing-head { flex-direction: column; align-items: flex-start; }
-    }
-
     /* ── FAQ ──────────────────────────────── */
     #faq { background: var(--bg-3); padding: 7rem 5vw; }
     .faq-inner { max-width: 760px; margin: 0 auto; }
@@ -1235,13 +1049,11 @@
       .nav-links { display: none; }
       #hero { padding: 7rem 4vw 4rem; }
       .sec { padding: 5rem 4vw; }
-      .stats-row { grid-template-columns: 1fr 1fr; }
-      .stat-cell { border-right: none; border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
-      .stat-cell:nth-child(odd) { padding-right: 1rem; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat-tile { min-height: 15rem; }
       .services-head { grid-template-columns: 1fr; gap: 1.25rem; }
       .services-grid { grid-template-columns: 1fr; }
       .s-card.hero-card { grid-row: auto; }
-      .gallery-masonry { columns: 2; }
       .process-steps { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
       .process-steps::before { display: none; }
       .test-grid { grid-template-columns: 1fr; }
@@ -1249,9 +1061,7 @@
       .footer-links { flex-wrap: wrap; justify-content: center; }
     }
     @media (max-width: 600px) {
-      .gallery-masonry { columns: 1; }
       .process-steps { grid-template-columns: 1fr; }
-      .stats-row { grid-template-columns: 1fr; }
     }
 
     /* ── REDESIGN LAYER ───────────────────── */
@@ -1266,8 +1076,8 @@
     body { font-family: var(--sans); font-size: 17px; letter-spacing: -0.011em; }
 
     .hero-title, .sec-title, .booking-title, .s-title, .p-title, .t-name,
-    .price-name, .price-amount, .stat-num, .faq-q, .panel-box h3, .f-success h4,
-    .g-label, .intent-quote, .btn-main, .btn-outline, .marquee-tag, .p-num {
+    .stat-num, .faq-q, .panel-box h3, .f-success h4,
+    .intent-quote, .btn-main, .btn-outline, .p-num {
       font-family: var(--sans);
     }
     .hero-title, .sec-title, .booking-title { font-weight: 700; letter-spacing: -0.04em; line-height: 1.02; }
@@ -1276,10 +1086,8 @@
     }
     .hero-title { font-size: clamp(3rem, 7.2vw, 6.6rem); }
     .sec-title { font-size: clamp(2.3rem, 4.6vw, 4.4rem); }
-    .s-title, .p-title, .price-name { font-weight: 700; letter-spacing: -0.025em; }
-    .stat-num { font-weight: 700; letter-spacing: -0.04em; }
+    .s-title, .p-title { font-weight: 700; letter-spacing: -0.025em; }
     .faq-q { font-weight: 600; font-size: 1.2rem; letter-spacing: -0.02em; }
-    .marquee-tag { font-weight: 600; font-size: 0.82rem; letter-spacing: 0.12em; }
     .btn-main, .btn-outline { font-weight: 600; font-size: 0.98rem; letter-spacing: -0.01em; }
 
     /* floating pill nav */
@@ -1319,7 +1127,7 @@
     /* surfaces + cards: flat, hairline, 28px */
     #services, #testimonials { background: var(--paper); }
     #process, #faq { background: #fff; }
-    .s-card, .t-card, .price-card, .panel-box, .intent-card, .calendly-wrap, .g-item { border-radius: var(--r-card); }
+    .s-card, .t-card, .panel-box, .intent-card, .calendly-wrap { border-radius: var(--r-card); }
     .s-card { padding: 2.4rem; border-color: transparent; background: #fff; }
     .s-card:nth-child(2), .s-card:nth-child(5) { background: var(--blue-wash); }
     .s-card:nth-child(3) { background: var(--coral-wash); }
@@ -1330,11 +1138,8 @@
     .t-card { border-color: var(--border); }
     .logo-card { border-radius: 22px; border-color: var(--border); }
     .logo-card:hover { box-shadow: none; transform: translateY(-3px); }
-    .p-num { border-radius: 50%; background: var(--blue-wash); border-color: transparent; color: var(--fg); }
     .sec-label { background: #fff; border: 1px solid var(--border); padding: 0.4rem 0.9rem; border-radius: 999px; color: var(--fg); letter-spacing: 0.1em; font-weight: 600; }
     .sec-label::before { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
-    #stats { padding: 5rem 5vw; }
-    .stat-num { font-size: clamp(3rem, 5vw, 4.6rem); }
     .f-input, .f-textarea, .f-select { border-radius: 14px; }
 
     /* values */
@@ -1346,8 +1151,24 @@
     .v-card:nth-child(4) { background: var(--fg); }
     .v-card:nth-child(4) .s-title { color: var(--bg); }
     .v-card:nth-child(4) .s-text { color: rgba(253,234,173,0.8); }
-    .v-card:nth-child(4) .v-num { color: var(--gold); }
-    .v-num { display: block; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 3rem; }
+    .v-card:nth-child(4) .v-ico { background: rgba(255,255,255,0.14); color: var(--bg); }
+    .v-card:nth-child(4) .v-bars i { background: rgba(255,255,255,0.2); }
+    .v-card:nth-child(4) .v-bars i.on { background: var(--gold); }
+    .v-top { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 3rem; }
+    .v-ico { width: 3.2rem; height: 3.2rem; flex: none; border-radius: 14px; background: rgba(255,255,255,0.7); color: var(--fg); display: flex; align-items: center; justify-content: center; }
+    .v-ico svg { width: 1.5rem; height: 1.5rem; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .v-mark { display: flex; flex-direction: column; align-items: flex-end; gap: 0.45rem; }
+    .v-mark b { font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; color: var(--gold); line-height: 1; }
+    .v-bars { display: flex; gap: 4px; }
+    .v-bars i { display: block; width: 1.15rem; height: 3px; border-radius: 2px; background: rgba(124,15,39,0.12); transition: background 0.3s; }
+    .v-bars i.on { background: var(--gold); }
+    .v-card { transition: translate 0.45s var(--ease), box-shadow 0.45s var(--ease); }
+    .v-ico { transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .v-bars i.lit { transition-delay: calc(var(--j) * 70ms); }
+    .v-card:hover { translate: 0 -8px; box-shadow: 0 22px 40px -22px rgba(124,15,39,0.45); }
+    .v-card:hover .v-ico { transform: rotate(-8deg) scale(1.1); }
+    .v-card:hover .v-bars i.lit { background: var(--gold); opacity: 0.55; }
+    @media (prefers-reduced-motion: reduce) { .v-card, .v-ico { transition: none; } }
     @media (max-width: 900px) { .values-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 600px) { .values-grid { grid-template-columns: 1fr; } }
 
@@ -1362,7 +1183,6 @@
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
     <li><a href="#gallery">Réalisations</a></li>
-    <li><a href="#pricing">Tarifs</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#booking" class="nav-rdv">Prendre RDV</a></li>
   </ul>
@@ -1445,47 +1265,35 @@
 </section>
 
 <!-- ── MARQUEE ────────────────────────────────── -->
-<div class="marquee-wrap">
-  <div class="marquee-inner">
-    <span class="marquee-tag"><span class="m-dot"></span>Instagram</span>
-    <span class="marquee-tag"><span class="m-dot"></span>Facebook</span>
-    <span class="marquee-tag"><span class="m-dot"></span>TikTok</span>
-    <span class="marquee-tag"><span class="m-dot"></span>LinkedIn</span>
-    <span class="marquee-tag"><span class="m-dot"></span>Google Ads</span>
-    <span class="marquee-tag"><span class="m-dot"></span>Meta Ads</span>
-    <span class="marquee-tag"><span class="m-dot"></span>YouTube</span>
-    <span class="marquee-tag"><span class="m-dot"></span>Pinterest</span>
-    <span class="marquee-tag"><span class="m-dot"></span>Snapchat</span>
-    <span class="marquee-tag"><span class="m-dot"></span>Instagram</span>
-    <span class="marquee-tag"><span class="m-dot"></span>Facebook</span>
-    <span class="marquee-tag"><span class="m-dot"></span>TikTok</span>
-    <span class="marquee-tag"><span class="m-dot"></span>LinkedIn</span>
-    <span class="marquee-tag"><span class="m-dot"></span>Google Ads</span>
-    <span class="marquee-tag"><span class="m-dot"></span>Meta Ads</span>
-    <span class="marquee-tag"><span class="m-dot"></span>YouTube</span>
-    <span class="marquee-tag"><span class="m-dot"></span>Pinterest</span>
-    <span class="marquee-tag"><span class="m-dot"></span>Snapchat</span>
-  </div>
-</div>
-
 <!-- ── STATS ──────────────────────────────────── -->
 <section id="stats">
-  <div class="stats-row">
-    <div class="stat-cell reveal">
-      <div class="stat-num"><span class="counter" data-target="20">0</span><sub>+</sub></div>
-      <p class="stat-desc">Entreprises et producteurs locaux accompagnés dans leur développement digital</p>
+  <div class="sec-inner">
+    <div class="stats-head">
+      <div class="sec-label">Nos chiffres</div>
+      <h2 class="sec-title">Les chiffres qui comptent</h2>
+      <p class="sec-sub">Un aperçu de notre impact auprès des entreprises et producteurs locaux.</p>
     </div>
-    <div class="stat-cell reveal">
-      <div class="stat-num"><span class="counter" data-target="47">0</span><sub>%</sub></div>
-      <p class="stat-desc">Taux d'engagement moyen sur les comptes que nous gérons</p>
-    </div>
-    <div class="stat-cell reveal">
-      <div class="stat-num"><span class="counter" data-target="4">0</span><sub>M+</sub></div>
-      <p class="stat-desc">Vues organiques générées pour nos clients cette année</p>
-    </div>
-    <div class="stat-cell reveal">
-      <div class="stat-num"><span class="counter" data-target="96">0</span><sub>%</sub></div>
-      <p class="stat-desc">De satisfaction client — ils renouvellent chaque année</p>
+    <div class="stats-grid">
+      <div class="stat-tile reveal">
+        <div class="stat-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2M3 13h18"/></svg></div>
+        <div class="stat-num"><span class="counter" data-target="20">0</span><sub>+</sub></div>
+        <p class="stat-desc">Entreprises et producteurs locaux accompagnés dans leur développement digital</p>
+      </div>
+      <div class="stat-tile reveal">
+        <div class="stat-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/></svg></div>
+        <div class="stat-num"><span class="counter" data-target="47">0</span><sub>%</sub></div>
+        <p class="stat-desc">Taux d'engagement moyen sur les comptes que nous gérons</p>
+      </div>
+      <div class="stat-tile reveal">
+        <div class="stat-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <div class="stat-num"><span class="counter" data-target="4">0</span><sub>M+</sub></div>
+        <p class="stat-desc">Vues organiques générées pour nos clients cette année</p>
+      </div>
+      <div class="stat-tile reveal">
+        <div class="stat-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div>
+        <div class="stat-num"><span class="counter" data-target="96">0</span><sub>%</sub></div>
+        <p class="stat-desc">De satisfaction client — ils renouvellent chaque année</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1622,62 +1430,31 @@
       <a href="#booking" class="btn-outline">Discuter de mon projet</a>
     </div>
 
-    <div class="gallery-masonry">
-      <div class="g-item reveal">
-        <img src="assets/gallery/quillot-panier.jpg" alt="Panier de produits Foie Gras Quillot au bord de l'eau" loading="lazy" />
-        <div class="g-overlay">
-          <div>
-            <div class="g-label">Foie Gras Quillot</div>
-            <div class="g-sub">Shooting produit · Direction artistique</div>
-          </div>
-        </div>
-      </div>
-      <div class="g-item reveal">
-        <img src="assets/gallery/quillot-nature.jpg" alt="Chef Quillot au bord d'une cascade" loading="lazy" />
-        <div class="g-overlay">
-          <div>
-            <div class="g-label">Foie Gras Quillot</div>
-            <div class="g-sub">Shooting en extérieur · Contenu réseaux</div>
-          </div>
-        </div>
-      </div>
-      <div class="g-item reveal">
-        <img src="assets/gallery/quillot-evenement.jpg" alt="Repas d'événement autour d'un cassoulet" loading="lazy" />
-        <div class="g-overlay">
-          <div>
-            <div class="g-label">Foie Gras Quillot</div>
-            <div class="g-sub">Couverture d'événement · Photo</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="g-item reveal">
-        <img src="assets/gallery/quillot-bocaux.jpg" alt="Bocaux et conserves Foie Gras Quillot" loading="lazy" />
-        <div class="g-overlay">
-          <div>
-            <div class="g-label">Foie Gras Quillot</div>
-            <div class="g-sub">Packshot · Mise en scène produit</div>
-          </div>
-        </div>
-      </div>
-      <div class="g-item reveal">
+    <div class="fan-layout">
+      <figure class="fan-card">
         <img src="assets/gallery/quillot-scene.jpg" alt="Remise de prix sur scène" loading="lazy" />
-        <div class="g-overlay">
-          <div>
-            <div class="g-label">Foie Gras Quillot</div>
-            <div class="g-sub">Événementiel · Reportage</div>
-          </div>
-        </div>
-      </div>
-      <div class="g-item reveal">
+        <figcaption class="fan-cap"><b>Foie Gras Quillot</b><span>Événementiel · Reportage</span></figcaption>
+      </figure>
+      <figure class="fan-card">
+        <img src="assets/gallery/quillot-evenement.jpg" alt="Repas d'événement autour d'un cassoulet" loading="lazy" />
+        <figcaption class="fan-cap"><b>Foie Gras Quillot</b><span>Couverture d'événement · Photo</span></figcaption>
+      </figure>
+      <figure class="fan-card">
+        <img src="assets/gallery/quillot-nature.jpg" alt="Chef Quillot au bord d'une cascade" loading="lazy" />
+        <figcaption class="fan-cap"><b>Foie Gras Quillot</b><span>Shooting en extérieur · Contenu réseaux</span></figcaption>
+      </figure>
+      <figure class="fan-card">
+        <img src="assets/gallery/quillot-panier.jpg" alt="Panier de produits Foie Gras Quillot au bord de l'eau" loading="lazy" />
+        <figcaption class="fan-cap"><b>Foie Gras Quillot</b><span>Shooting produit · Direction artistique</span></figcaption>
+      </figure>
+      <figure class="fan-card">
+        <img src="assets/gallery/quillot-bocaux.jpg" alt="Bocaux et conserves Foie Gras Quillot" loading="lazy" />
+        <figcaption class="fan-cap"><b>Foie Gras Quillot</b><span>Packshot · Mise en scène produit</span></figcaption>
+      </figure>
+      <figure class="fan-card">
         <img src="assets/gallery/quillot-vin.jpg" alt="Cou d'oie farci et vin rouge sur planche" loading="lazy" />
-        <div class="g-overlay">
-          <div>
-            <div class="g-label">Foie Gras Quillot</div>
-            <div class="g-sub">Shooting produit · Univers de marque</div>
-          </div>
-        </div>
-      </div>
+        <figcaption class="fan-cap"><b>Foie Gras Quillot</b><span>Shooting produit · Univers de marque</span></figcaption>
+      </figure>
     </div>
 
     <div class="gallery-cta">
@@ -1700,10 +1477,10 @@
       <p class="sec-sub" style="margin:0 auto;">Producteurs, artisans, commerces, hôtels, restaurants et entreprises plus grandes : une même exigence, au plus près de chaque client.</p>
     </div>
     <div class="values-grid">
-      <div class="v-card reveal"><span class="v-num">01</span><h3 class="s-title">Présence</h3><p class="s-text">Un interlocuteur disponible, qui connaît votre activité, votre territoire et vos clients.</p></div>
-      <div class="v-card reveal"><span class="v-num">02</span><h3 class="s-title">Rigueur</h3><p class="s-text">Un calendrier tenu, des publications soignées et un suivi chiffré chaque mois.</p></div>
-      <div class="v-card reveal"><span class="v-num">03</span><h3 class="s-title">Expertise</h3><p class="s-text">Stratégie, création, publicité : une maîtrise complète des réseaux, adaptée à votre marché local.</p></div>
-      <div class="v-card reveal"><span class="v-num">04</span><h3 class="s-title">Premium</h3><p class="s-text">Des contenus travaillés avec exigence, à la hauteur de la qualité de vos produits et de votre savoir-faire.</p></div>
+      <div class="v-card reveal"><div class="v-top"><span class="v-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg></span><span class="v-mark"><b>01</b><span class="v-bars" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></span></span></div><h3 class="s-title">Présence</h3><p class="s-text">Un interlocuteur disponible, qui connaît votre activité, votre territoire et vos clients.</p></div>
+      <div class="v-card reveal"><div class="v-top"><span class="v-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M8 3v4M16 3v4M3.5 10h17M9 15l2.2 2.2L15.5 13"/></svg></span><span class="v-mark"><b>02</b><span class="v-bars" aria-hidden="true"><i class="lit" style="--j:0"></i><i class="on"></i><i></i><i></i></span></span></div><h3 class="s-title">Rigueur</h3><p class="s-text">Un calendrier tenu, des publications soignées et un suivi chiffré chaque mois.</p></div>
+      <div class="v-card reveal"><div class="v-top"><span class="v-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="0.8"/></svg></span><span class="v-mark"><b>03</b><span class="v-bars" aria-hidden="true"><i class="lit" style="--j:0"></i><i class="lit" style="--j:1"></i><i class="on"></i><i></i></span></span></div><h3 class="s-title">Expertise</h3><p class="s-text">Stratégie, création, publicité : une maîtrise complète des réseaux, adaptée à votre marché local.</p></div>
+      <div class="v-card reveal"><div class="v-top"><span class="v-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.9L12 17l-5.2 2.7 1-5.9L3.5 9.7l5.9-.8z"/></svg></span><span class="v-mark"><b>04</b><span class="v-bars" aria-hidden="true"><i class="lit" style="--j:0"></i><i class="lit" style="--j:1"></i><i class="lit" style="--j:2"></i><i class="on"></i></span></span></div><h3 class="s-title">Premium</h3><p class="s-text">Des contenus travaillés avec exigence, à la hauteur de la qualité de vos produits et de votre savoir-faire.</p></div>
     </div>
   </div>
 </section>
@@ -1717,22 +1494,22 @@
     </div>
 
     <div class="process-steps">
-      <div class="p-step reveal">
+      <div class="p-step">
         <div class="p-num">01</div>
         <h3 class="p-title">Audit & Stratégie</h3>
         <p class="p-text">On analyse votre marché local, vos concurrents et votre audience pour construire une stratégie sur-mesure qui a du sens.</p>
       </div>
-      <div class="p-step reveal">
+      <div class="p-step">
         <div class="p-num">02</div>
         <h3 class="p-title">Création de contenu</h3>
         <p class="p-text">Notre équipe crée des visuels, textes et vidéos qui captivent votre communauté et correspondent à votre identité.</p>
       </div>
-      <div class="p-step reveal">
+      <div class="p-step">
         <div class="p-num">03</div>
         <h3 class="p-title">Publication & Gestion</h3>
         <p class="p-text">Planification optimisée, publication régulière, réponses aux interactions. Votre compte est actif 7j/7.</p>
       </div>
-      <div class="p-step reveal">
+      <div class="p-step">
         <div class="p-num">04</div>
         <h3 class="p-title">Suivi & Optimisation</h3>
         <p class="p-text">Rapport mensuel avec vos vrais KPIs. On ajuste continuellement pour améliorer vos performances.</p>
@@ -1790,271 +1567,6 @@
           <div class="t-role">Fondatrice, Atelier Bérénice</div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── PRICING ────────────────────────────────── -->
-<section id="pricing">
-  <div class="pricing-inner">
-
-    <div class="pricing-head">
-      <div>
-        <div class="sec-label">Nos formules</div>
-        <h2 class="sec-title">Une offre <em>transparente</em></h2>
-      </div>
-      <div class="pricing-tabs" role="tablist">
-        <button class="ptab active" data-pricing="mensuel" role="tab" aria-selected="true">Mensuel</button>
-        <button class="ptab" data-pricing="trimestriel" role="tab" aria-selected="false">Trimestriel</button>
-        <button class="ptab" data-pricing="annuel" role="tab" aria-selected="false">Annuel −15%</button>
-      </div>
-    </div>
-
-    <div class="pricing-panels">
-
-      <!-- Mensuel -->
-      <div class="pricing-panel open" id="pricing-mensuel">
-        <div class="pricing-grid">
-
-          <div class="price-card reveal">
-            <p class="price-name">Essentiel</p>
-            <p class="price-tagline">Idéal pour démarrer votre présence locale</p>
-            <div class="price-amount">349 <span>€ HT</span></div>
-            <p class="price-period">par mois · sans engagement</p>
-            <hr class="price-divider" />
-            <ul class="price-feats">
-              <li>Gestion d'1 réseau social</li>
-              <li>12 publications / mois</li>
-              <li>Stories hebdomadaires</li>
-              <li>Modération des commentaires</li>
-              <li>Rapport mensuel</li>
-            </ul>
-            <a href="#booking" class="price-cta">Commencer</a>
-          </div>
-
-          <div class="price-card featured reveal">
-            <div class="price-badge">Le plus populaire</div>
-            <p class="price-name">Standard</p>
-            <p class="price-tagline">La formule complète pour accélérer votre croissance</p>
-            <div class="price-amount">599 <span>€ HT</span></div>
-            <p class="price-period">par mois · sans engagement</p>
-            <hr class="price-divider" />
-            <ul class="price-feats">
-              <li>Gestion de 2 réseaux sociaux</li>
-              <li>20 publications / mois</li>
-              <li>Stories + Reels optimisés</li>
-              <li>Community management</li>
-              <li>Meta Ads (budget inclus 50€)</li>
-              <li>Rapport mensuel détaillé</li>
-            </ul>
-            <a href="#booking" class="price-cta">Commencer</a>
-          </div>
-
-          <div class="price-card reveal">
-            <p class="price-name">Premium</p>
-            <p class="price-tagline">Accompagnement complet clé en main</p>
-            <div class="price-amount">Sur <span style="font-size:1.6rem;opacity:1;">devis</span></div>
-            <p class="price-period">adapté à votre situation</p>
-            <hr class="price-divider" />
-            <ul class="price-feats">
-              <li>Gestion multi-réseaux (3+)</li>
-              <li>Contenu illimité</li>
-              <li>Tournage mensuel sur site</li>
-              <li>Meta + Google Ads complet</li>
-              <li>Suivi hebdomadaire dédié</li>
-              <li>Stratégie 100% sur-mesure</li>
-            </ul>
-            <a href="#booking" class="price-cta">Nous contacter</a>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Trimestriel -->
-      <div class="pricing-panel" id="pricing-trimestriel">
-        <div class="pricing-grid">
-          <div class="price-card reveal">
-            <p class="price-name">Essentiel</p>
-            <p class="price-tagline">Idéal pour démarrer votre présence locale</p>
-            <div class="price-amount">319 <span>€ HT</span></div>
-            <p class="price-period">par mois · engagement 3 mois</p>
-            <hr class="price-divider" />
-            <ul class="price-feats">
-              <li>Gestion d'1 réseau social</li>
-              <li>12 publications / mois</li>
-              <li>Stories hebdomadaires</li>
-              <li>Modération des commentaires</li>
-              <li>Rapport mensuel</li>
-            </ul>
-            <a href="#booking" class="price-cta">Commencer</a>
-          </div>
-          <div class="price-card featured reveal">
-            <div class="price-badge">Le plus populaire</div>
-            <p class="price-name">Standard</p>
-            <p class="price-tagline">La formule complète pour accélérer votre croissance</p>
-            <div class="price-amount">549 <span>€ HT</span></div>
-            <p class="price-period">par mois · engagement 3 mois</p>
-            <hr class="price-divider" />
-            <ul class="price-feats">
-              <li>Gestion de 2 réseaux sociaux</li>
-              <li>20 publications / mois</li>
-              <li>Stories + Reels optimisés</li>
-              <li>Community management</li>
-              <li>Meta Ads (budget inclus 50€)</li>
-              <li>Rapport mensuel détaillé</li>
-            </ul>
-            <a href="#booking" class="price-cta">Commencer</a>
-          </div>
-          <div class="price-card reveal">
-            <p class="price-name">Premium</p>
-            <p class="price-tagline">Accompagnement complet clé en main</p>
-            <div class="price-amount">Sur <span style="font-size:1.6rem;opacity:1;">devis</span></div>
-            <p class="price-period">adapté à votre situation</p>
-            <hr class="price-divider" />
-            <ul class="price-feats">
-              <li>Gestion multi-réseaux (3+)</li>
-              <li>Contenu illimité</li>
-              <li>Tournage mensuel sur site</li>
-              <li>Meta + Google Ads complet</li>
-              <li>Suivi hebdomadaire dédié</li>
-              <li>Stratégie 100% sur-mesure</li>
-            </ul>
-            <a href="#booking" class="price-cta">Nous contacter</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Annuel -->
-      <div class="pricing-panel" id="pricing-annuel">
-        <div class="pricing-grid">
-          <div class="price-card reveal">
-            <p class="price-name">Essentiel</p>
-            <p class="price-tagline">Idéal pour démarrer votre présence locale</p>
-            <div class="price-amount">297 <span>€ HT</span></div>
-            <p class="price-period">par mois · engagement 12 mois</p>
-            <hr class="price-divider" />
-            <ul class="price-feats">
-              <li>Gestion d'1 réseau social</li>
-              <li>12 publications / mois</li>
-              <li>Stories hebdomadaires</li>
-              <li>Modération des commentaires</li>
-              <li>Rapport mensuel</li>
-            </ul>
-            <a href="#booking" class="price-cta">Commencer</a>
-          </div>
-          <div class="price-card featured reveal">
-            <div class="price-badge">Le plus populaire</div>
-            <p class="price-name">Standard</p>
-            <p class="price-tagline">La formule complète pour accélérer votre croissance</p>
-            <div class="price-amount">509 <span>€ HT</span></div>
-            <p class="price-period">par mois · engagement 12 mois</p>
-            <hr class="price-divider" />
-            <ul class="price-feats">
-              <li>Gestion de 2 réseaux sociaux</li>
-              <li>20 publications / mois</li>
-              <li>Stories + Reels optimisés</li>
-              <li>Community management</li>
-              <li>Meta Ads (budget inclus 50€)</li>
-              <li>Rapport mensuel détaillé</li>
-            </ul>
-            <a href="#booking" class="price-cta">Commencer</a>
-          </div>
-          <div class="price-card reveal">
-            <p class="price-name">Premium</p>
-            <p class="price-tagline">Accompagnement complet clé en main</p>
-            <div class="price-amount">Sur <span style="font-size:1.6rem;opacity:1;">devis</span></div>
-            <p class="price-period">adapté à votre situation</p>
-            <hr class="price-divider" />
-            <ul class="price-feats">
-              <li>Gestion multi-réseaux (3+)</li>
-              <li>Contenu illimité</li>
-              <li>Tournage mensuel sur site</li>
-              <li>Meta + Google Ads complet</li>
-              <li>Suivi hebdomadaire dédié</li>
-              <li>Stratégie 100% sur-mesure</li>
-            </ul>
-            <a href="#booking" class="price-cta">Nous contacter</a>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /pricing-panels -->
-
-    <p class="price-note">Tous les prix sont HT · TVA 20% · <a href="#booking">Besoin d'un devis personnalisé ?</a></p>
-
-  </div>
-</section>
-
-<!-- ── FAQ ────────────────────────────────────── -->
-<section id="faq">
-  <div class="faq-inner">
-    <div class="faq-head">
-      <div class="sec-label">Questions fréquentes</div>
-      <h2 class="sec-title">Vos <em>doutes,</em> clarifiés.</h2>
-    </div>
-
-    <div class="faq-list">
-
-      <details class="faq-item">
-        <summary class="faq-q">
-          En combien de temps voit-on des résultats ?
-          <span class="faq-icon">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </span>
-        </summary>
-        <p class="faq-a">Les premiers résultats (engagement, visibilité, abonnés) sont visibles dès le premier mois. Les résultats commerciaux significatifs (leads, réservations, chiffre d'affaire) apparaissent généralement entre 2 et 4 mois selon votre secteur et votre marché local.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">
-          Travaillez-vous avec tous types d'entreprises ?
-          <span class="faq-icon">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </span>
-        </summary>
-        <p class="faq-a">Oui — producteurs, artisans, commerces, restaurants, hôtels, cabinets, agences… Notre cœur de métier, ce sont les entreprises et producteurs locaux, mais nous accompagnons aussi des structures plus importantes, avec la même rigueur et la même proximité. Notre spécialité : comprendre votre marché et votre territoire.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">
-          Est-ce que je garde la main sur mes réseaux ?
-          <span class="faq-icon">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </span>
-        </summary>
-        <p class="faq-a">Absolument. Vos comptes vous appartiennent — nous travaillons avec vos accès, mais vous restez propriétaire de tout. Vous pouvez suivre chaque publication avant diffusion, et nous ajustons le niveau d'autonomie selon vos préférences.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">
-          Que comprend exactement le "contenu" ?
-          <span class="faq-icon">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </span>
-        </summary>
-        <p class="faq-a">Selon votre formule : visuels statiques (photos, cartes, citations), Reels et courtes vidéos, Stories quotidiennes, et contenu graphique (flyers digitaux, affiches). Pour la formule Premium, nous nous déplaçons chez vous pour des sessions photo/vidéo mensuelles.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">
-          Y a-t-il un engagement de durée ?
-          <span class="faq-icon">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </span>
-        </summary>
-        <p class="faq-a">La formule mensuelle est sans engagement. Les formules trimestrielle et annuelle offrent des tarifs réduits en échange d'un engagement sur la durée. Dans tous les cas, nous travaillons avec un préavis de 30 jours si vous souhaitez mettre fin à la collaboration.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary class="faq-q">
-          Comment se passe l'onboarding ?
-          <span class="faq-icon">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </span>
-        </summary>
-        <p class="faq-a">Après signature, nous vous envoyons un questionnaire de démarrage (10 min), puis un appel stratégique de 45 min pour aligner la vision. Sous 7 jours, vous recevez votre première stratégie éditoriale. Les premières publications partent dès la semaine suivante.</p>
-      </details>
-
     </div>
   </div>
 </section>
@@ -2240,6 +1752,80 @@
   </div><!-- /booking-inner -->
 </section>
 
+<!-- ── FAQ ────────────────────────────────────── -->
+<section id="faq">
+  <div class="faq-inner">
+    <div class="faq-head">
+      <div class="sec-label">Questions fréquentes</div>
+      <h2 class="sec-title">Vos <em>doutes,</em> clarifiés.</h2>
+    </div>
+
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          En combien de temps voit-on des résultats ?
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+        </summary>
+        <p class="faq-a">Les premiers résultats (engagement, visibilité, abonnés) sont visibles dès le premier mois. Les résultats commerciaux significatifs (leads, réservations, chiffre d'affaire) apparaissent généralement entre 2 et 4 mois selon votre secteur et votre marché local.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Travaillez-vous avec tous types d'entreprises ?
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+        </summary>
+        <p class="faq-a">Oui — producteurs, artisans, commerces, restaurants, hôtels, cabinets, agences… Notre cœur de métier, ce sont les entreprises et producteurs locaux, mais nous accompagnons aussi des structures plus importantes, avec la même rigueur et la même proximité. Notre spécialité : comprendre votre marché et votre territoire.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Est-ce que je garde la main sur mes réseaux ?
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+        </summary>
+        <p class="faq-a">Absolument. Vos comptes vous appartiennent — nous travaillons avec vos accès, mais vous restez propriétaire de tout. Vous pouvez suivre chaque publication avant diffusion, et nous ajustons le niveau d'autonomie selon vos préférences.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Que comprend exactement le "contenu" ?
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+        </summary>
+        <p class="faq-a">Selon votre formule : visuels statiques (photos, cartes, citations), Reels et courtes vidéos, Stories quotidiennes, et contenu graphique (flyers digitaux, affiches). Pour la formule Premium, nous nous déplaçons chez vous pour des sessions photo/vidéo mensuelles.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Y a-t-il un engagement de durée ?
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+        </summary>
+        <p class="faq-a">La formule mensuelle est sans engagement. Les formules trimestrielle et annuelle offrent des tarifs réduits en échange d'un engagement sur la durée. Dans tous les cas, nous travaillons avec un préavis de 30 jours si vous souhaitez mettre fin à la collaboration.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Comment se passe l'onboarding ?
+          <span class="faq-icon">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2v8M2 6h8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+        </summary>
+        <p class="faq-a">Après signature, nous vous envoyons un questionnaire de démarrage (10 min), puis un appel stratégique de 45 min pour aligner la vision. Sous 7 jours, vous recevez votre première stratégie éditoriale. Les premières publications partent dès la semaine suivante.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
 <!-- ── FOOTER ─────────────────────────────────── -->
 <footer>
   <a href="#" class="footer-logo" aria-label="Prestacomm"><img src="assets/logo.png" alt="Prestacomm" /></a>
@@ -2287,7 +1873,7 @@ window.addEventListener('load', () => {
   });
 
   /* Staggered children inside grids */
-  ['.services-grid', '.test-grid', '.process-steps', '.values-grid'].forEach(sel => {
+  ['.services-grid', '.test-grid', '.values-grid'].forEach(sel => {
     const container = document.querySelector(sel);
     if (!container) return;
     const items = container.querySelectorAll('.reveal');
@@ -2300,15 +1886,225 @@ window.addEventListener('load', () => {
     });
   });
 
-  /* Gallery masonry stagger */
-  const galleryItems = document.querySelectorAll('.g-item');
-  gsap.to(galleryItems, {
-    scrollTrigger: { trigger: '.gallery-masonry', start: 'top 85%', once: true },
-    opacity: 1, y: 0,
-    duration: 0.65,
-    stagger: 0.08,
-    ease: 'power3.out',
-  });
+  /* Process: the line draws left to right, each step pops in as it is reached */
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const pSteps = gsap.utils.toArray('.p-step');
+    const pWrap = document.querySelector('.process-steps');
+    if (pWrap && pSteps.length) {
+      const nums = pSteps.map(el => el.querySelector('.p-num'));
+      const texts = pSteps.map(el => el.querySelectorAll('.p-title, .p-text'));
+      gsap.set(pWrap, { '--line': 0 });
+      gsap.set(nums, { scale: 0.3, opacity: 0 });
+      gsap.set(texts, { y: 22, opacity: 0 });
+      const tl = gsap.timeline({ scrollTrigger: { trigger: pWrap, start: 'top 80%', once: true } });
+      const t0 = 0.2, draw = 2.1;
+      tl.to(pWrap, { '--line': 1, duration: draw, ease: 'none' }, t0);
+      pSteps.forEach((_, i) => {
+        const t = t0 + (draw * i) / (pSteps.length - 1);
+        tl.to(nums[i], { scale: 1, opacity: 1, duration: 0.55, ease: 'back.out(2.4)' }, t)
+          .to(texts[i], { y: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: 'power3.out' }, t + 0.12);
+      });
+    }
+  }
+
+  /* Values: the 1/4 markers fill and count up as the cards appear */
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const vGrid = document.querySelector('.values-grid');
+    const vCards = gsap.utils.toArray('.v-card');
+    if (vGrid && vCards.length) {
+      const vTl = gsap.timeline({ scrollTrigger: { trigger: vGrid, start: 'top 82%', once: true } });
+      vCards.forEach((card, i) => {
+        const bars = card.querySelectorAll('.v-bars i');
+        const b = card.querySelector('.v-mark b');
+        const o = { v: 0 };
+        gsap.set(bars, { scaleX: 0, transformOrigin: 'left center' });
+        b.textContent = '00';
+        const at = 0.3 + i * 0.12;
+        vTl.to(bars, { scaleX: 1, duration: 0.35, stagger: 0.18, ease: 'power2.out' }, at)
+           .to(o, { v: i + 1, duration: 0.18 * (i + 1) + 0.35, ease: 'none',
+                    onUpdate: () => { b.textContent = '0' + Math.round(o.v); } }, at);
+      });
+    }
+  }
+
+  /* Gallery: fan carousel */
+  (function () {
+    const container = document.querySelector('.fan-layout');
+    if (!container) return;
+    const cardEls = Array.from(container.querySelectorAll('.fan-card'));
+    const total = cardEls.length;
+    if (!total) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const MAX_VISIBLE = 7, HALF = 3;
+    const FAN = [
+      { rot: -21, scale: 0.7756, x: -30, y: 7.3, zIndex: 1 },
+      { rot: -14, scale: 0.8498, x: -22, y: 4.0, zIndex: 2 },
+      { rot: -7,  scale: 0.9346, x: -11, y: 1.3, zIndex: 3 },
+      { rot: 0,   scale: 1.0,    x: 0,   y: 0.0, zIndex: 10 },
+      { rot: 7,   scale: 0.9346, x: 11,  y: 1.3, zIndex: 3 },
+      { rot: 14,  scale: 0.8498, x: 22,  y: 4.0, zIndex: 2 },
+      { rot: 21,  scale: 0.7756, x: 30,  y: 7.3, zIndex: 1 },
+    ];
+    const needsPagination = total > MAX_VISIBLE;
+    let centerIndex = needsPagination ? HALF : total >> 1;
+    let isAnimating = false, hasEntered = false, direction = null;
+    let prevVisible = new Set();
+    let teardown = null;
+
+    const respMult = w => w < 480 ? 0.28 : w < 640 ? 0.38 : w < 768 ? 0.5 : w < 1024 ? 0.75 : 1;
+    const heightMult = w => {
+      const ideal = (w < 480 ? 20 : w < 640 ? 23 : w < 768 ? 25 : w < 1024 ? 28 : 31) * 16;
+      const avail = window.innerHeight * 0.7;
+      return avail >= ideal ? 1 : avail / ideal;
+    };
+    const slotCfg = (n, slot) => {
+      if (n >= MAX_VISIBLE) return FAN[slot];
+      const c = n >> 1;
+      const d = n > 1 ? (slot - c) / c : 0, a = Math.abs(d);
+      return { rot: d * 21, scale: 1 - 0.2244 * a * a, x: d * 30, y: a * a * 7.3, zIndex: 10 - Math.abs(slot - c) };
+    };
+    const visibleMap = center => {
+      const map = new Map();
+      if (!needsPagination) { cardEls.forEach((_, i) => map.set(i, i)); return map; }
+      for (let slot = 0; slot < MAX_VISIBLE; slot++) map.set((((center + slot - HALF) % total) + total) % total, slot);
+      return map;
+    };
+    const go = (el, vars) => {
+      if (!reduce) { gsap.to(el, vars); return; }
+      const { onComplete, duration, delay, ease, overwrite, ...rest } = vars;
+      gsap.set(el, rest);
+      if (onComplete) onComplete();
+    };
+
+    /* arrows + dots, only when there are more cards than the fan can show */
+    let dots = [];
+    if (needsPagination) {
+      const nav = document.createElement('div');
+      nav.className = 'fan-nav';
+      const arrow = (dir, label, pts) => {
+        const b = document.createElement('button');
+        b.type = 'button'; b.className = 'fan-arrow'; b.setAttribute('aria-label', label);
+        b.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="' + pts + '"/></svg>';
+        b.addEventListener('click', () => cycle(dir));
+        return b;
+      };
+      const dotsWrap = document.createElement('div');
+      dotsWrap.className = 'fan-dots';
+      dots = cardEls.map(() => dotsWrap.appendChild(document.createElement('i')));
+      nav.append(arrow('left', 'Précédent', '15 18 9 12 15 6'), dotsWrap, arrow('right', 'Suivant', '9 18 15 12 9 6'));
+      container.after(nav);
+    }
+    const updateDots = () => dots.forEach((d, i) => d.classList.toggle('on', i === centerIndex));
+
+    function cycle(dir) {
+      if (isAnimating || !needsPagination) return;
+      isAnimating = true;
+      direction = dir;
+      centerIndex = dir === 'right' ? (centerIndex + 1) % total : (centerIndex - 1 + total) % total;
+      render();
+    }
+
+    function render() {
+      if (teardown) teardown();
+      updateDots();
+      const map = visibleMap(centerIndex);
+      const wasVisibleSet = prevVisible;
+      const isFirst = !hasEntered;
+      const mult = respMult(window.innerWidth);
+      const hMult = heightMult(window.innerWidth);
+      const slotCount = needsPagination ? MAX_VISIBLE : total;
+      const config = slot => slotCfg(slotCount, slot);
+      if (isFirst) isAnimating = true;
+
+      let done = 0;
+      const onDone = () => {
+        if (++done >= map.size) { isAnimating = false; if (isFirst) hasEntered = true; }
+      };
+
+      cardEls.forEach((card, idx) => {
+        const slot = map.get(idx);
+        const wasVisible = wasVisibleSet.has(idx);
+        if (slot !== undefined) {
+          const { x, y, rot, scale, zIndex } = config(slot);
+          const target = { x: x * mult + 'rem', y: y * hMult + 'rem', rotation: rot, scale, opacity: 1, zIndex };
+          if (isFirst) {
+            gsap.set(card, { x: 0, y: 12 * hMult + 'rem', rotation: 0, scale: 0.5, opacity: 0 });
+            go(card, { ...target, duration: 1.2, ease: 'elastic.out(1.05,.78)', delay: 0.2 + slot * 0.06, onComplete: onDone });
+          } else if (!wasVisible) {
+            gsap.set(card, { x: (direction === 'right' ? 40 : -40) + 'rem', y: y * hMult + 'rem', rotation: direction === 'right' ? 30 : -30, scale: 0.5, opacity: 0 });
+            go(card, { ...target, duration: 0.6, ease: 'power2.out', onComplete: onDone });
+          } else {
+            go(card, { ...target, duration: 0.5, ease: 'power2.out', onComplete: onDone });
+          }
+        } else if (wasVisible) {
+          go(card, { x: (direction === 'right' ? -40 : 40) + 'rem', opacity: 0, scale: 0.5, rotation: direction === 'right' ? -30 : 30, duration: 0.4, ease: 'power2.in', zIndex: 0 });
+        } else if (isFirst) {
+          gsap.set(card, { opacity: 0, scale: 0.3, x: 0, y: 0, zIndex: 0 });
+        }
+      });
+      prevVisible = new Set(map.keys());
+
+      if (reduce) { teardown = null; return; }
+
+      /* hover: the hovered card lifts, its neighbours step aside */
+      const entries = [];
+      cardEls.forEach((el, i) => { const s = map.get(i); if (s !== undefined) entries.push({ el, slot: s }); });
+      entries.sort((a, b) => a.slot - b.slot);
+      const centerSlot = entries.length >> 1;
+      let activeSlot = null, leaveTimer = null;
+
+      const layoutHover = hovered => {
+        const m = respMult(window.innerWidth), hM = heightMult(window.innerWidth);
+        entries.forEach(({ el, slot }) => {
+          const base = config(slot);
+          let tx = base.x * m, ty = base.y * hM, tr = base.rot, ts = base.scale, delay;
+          if (hovered !== null) {
+            const dist = Math.abs(slot - hovered);
+            delay = dist * 0.02;
+            if (slot === hovered) { ty -= 2.5 * hM; ts *= 1.08; }
+            else {
+              const norm = centerSlot > 0 ? (slot - centerSlot) / centerSlot : 0;
+              const push = 8 * (1 - Math.abs(norm)) * (1 + 0.2 * Math.max(0, 3 - dist));
+              if (slot < hovered) { tx -= push * m; tr -= 3 / (dist + 1); }
+              else { tx += push * m; tr += 3 / (dist + 1); }
+              if (slot === entries.length - 1 && hovered < centerSlot) ty -= 1 * hM;
+              if (slot === 0 && hovered > centerSlot) ty -= 1 * hM;
+            }
+          } else {
+            delay = Math.abs(slot - centerSlot) * 0.02;
+          }
+          gsap.to(el, { x: tx + 'rem', y: ty + 'rem', rotation: tr, scale: ts, duration: 0.5, delay, ease: 'elastic.out(1,.75)', overwrite: 'auto' });
+          gsap.set(el, { zIndex: base.zIndex });
+        });
+      };
+
+      const handlers = entries.map(({ el, slot }) => {
+        const h = () => {
+          if (isAnimating) return;
+          if (leaveTimer) { clearTimeout(leaveTimer); leaveTimer = null; }
+          if (activeSlot !== slot) { activeSlot = slot; layoutHover(slot); }
+        };
+        el.addEventListener('mouseenter', h);
+        return { el, h };
+      });
+      const onLeave = () => {
+        if (isAnimating) return;
+        if (leaveTimer) clearTimeout(leaveTimer);
+        leaveTimer = setTimeout(() => { activeSlot = null; layoutHover(null); }, 50);
+      };
+      const onResize = () => { if (!isAnimating) layoutHover(activeSlot); };
+      container.addEventListener('mouseleave', onLeave);
+      window.addEventListener('resize', onResize);
+      teardown = () => {
+        handlers.forEach(({ el, h }) => el.removeEventListener('mouseenter', h));
+        container.removeEventListener('mouseleave', onLeave);
+        window.removeEventListener('resize', onResize);
+        if (leaveTimer) clearTimeout(leaveTimer);
+      };
+    }
+
+    ScrollTrigger.create({ trigger: container, start: 'top 85%', once: true, onEnter: render });
+  })();
 
   /* Stats counter */
   document.querySelectorAll('.counter').forEach(el => {
@@ -2330,19 +2126,6 @@ window.addEventListener('load', () => {
     });
   });
 
-  /* Gallery 3-D tilt */
-  document.querySelectorAll('.g-item').forEach(item => {
-    item.addEventListener('mousemove', e => {
-      const r = item.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top)  / r.height - 0.5;
-      gsap.to(item, { rotateX: -y * 5, rotateY: x * 5, duration: 0.4, ease: 'power2.out', transformPerspective: 800 });
-    });
-    item.addEventListener('mouseleave', () => {
-      gsap.to(item, { rotateX: 0, rotateY: 0, duration: 0.55, ease: 'power2.out' });
-    });
-  });
-
   /* Parallax glow orbs */
   gsap.to('.hero-glow-a', {
     scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1.5 },
@@ -2351,16 +2134,6 @@ window.addEventListener('load', () => {
   gsap.to('.hero-glow-b', {
     scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1 },
     y: -50, x: -30,
-  });
-
-  /* Pricing section reveal */
-  gsap.from('.pricing-head', {
-    scrollTrigger: { trigger: '#pricing', start: 'top 75%', once: true },
-    opacity: 0, y: 30, duration: 0.9, ease: 'power3.out',
-  });
-  gsap.from('.price-card', {
-    scrollTrigger: { trigger: '.pricing-grid', start: 'top 80%', once: true },
-    opacity: 0, y: 50, duration: 0.7, ease: 'power3.out', stagger: 0.15,
   });
 
   /* FAQ reveal */
@@ -2383,22 +2156,6 @@ window.addEventListener('load', () => {
     opacity: 0, y: 40, duration: 0.7, ease: 'power3.out', stagger: 0.14,
   });
 });
-
-/* Pricing tabs */
-(function() {
-  const tabs = document.querySelectorAll('.ptab');
-  const panels = document.querySelectorAll('.pricing-panel');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
-      panels.forEach(p => p.classList.remove('open'));
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
-      const target = document.getElementById('pricing-' + tab.dataset.pricing);
-      if (target) target.classList.add('open');
-    });
-  });
-})();
 
 /* Intent card interaction */
 (function() {
