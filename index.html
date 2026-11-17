@@ -343,43 +343,72 @@
     }
 
     /* ── STATS ────────────────────────────── */
-    #stats {
-      background: var(--fg);
-      border-bottom: 1px solid rgba(124,15,39,0.2);
-      padding: 4.5rem 5vw;
-      color: var(--bg);
-    }
+    #stats { padding: 4rem 5vw 1rem; }
     .stats-row {
+      position: relative;
+      overflow: hidden;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       max-width: 1300px;
       margin: 0 auto;
+      padding: 3.5rem 2rem;
+      background: var(--fg);
+      color: var(--bg);
+      border-radius: 36px;
+    }
+    .stats-row::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 90% at 100% 0%, rgba(230,79,97,0.28), transparent 70%),
+        radial-gradient(ellipse 40% 80% at 0% 100%, rgba(135,175,233,0.16), transparent 70%);
+      pointer-events: none;
     }
     .stat-cell {
-      padding: 1.5rem 2rem;
-      border-right: 1px solid rgba(253,234,173,0.18);
+      position: relative;
+      padding: 0.5rem 1.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-    .stat-cell:last-child { border-right: none; }
+    .stat-cell + .stat-cell::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8%; bottom: 8%;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(253,234,173,0.28), transparent);
+    }
     .stat-num {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0.03em;
       font-family: 'Cormorant Garamond', serif;
       font-weight: 700;
       font-size: clamp(2.8rem, 4vw, 4rem);
       letter-spacing: -0.02em;
       line-height: 1;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
       color: var(--bg);
+      font-variant-numeric: tabular-nums;
     }
     .stat-num sub {
-      font-size: 0.55em;
+      font-size: 0.42em;
+      line-height: 1;
+      margin-top: 0.28em;
       color: var(--gold);
       vertical-align: baseline;
       font-weight: 700;
+      letter-spacing: 0;
     }
     .stat-desc {
-      font-size: 0.875rem;
-      color: rgba(253,234,173,0.72);
+      font-size: 0.9rem;
+      color: rgba(253,234,173,0.78);
       line-height: 1.55;
-      max-width: 200px;
+      max-width: 22ch;
+      text-wrap: balance;
     }
 
     /* ── SECTION COMMONS ─────────────────── */
@@ -1048,9 +1077,9 @@
       .nav-links { display: none; }
       #hero { padding: 7rem 4vw 4rem; }
       .sec { padding: 5rem 4vw; }
-      .stats-row { grid-template-columns: 1fr 1fr; }
-      .stat-cell { border-right: none; border-bottom: 1px solid var(--border); padding: 1.5rem 0; }
-      .stat-cell:nth-child(odd) { padding-right: 1rem; }
+      .stats-row { grid-template-columns: 1fr 1fr; gap: 2.5rem 0; padding: 2.5rem 1rem; }
+      .stat-cell + .stat-cell::before { display: none; }
+      .stat-cell:nth-child(even)::before { display: block; }
       .services-head { grid-template-columns: 1fr; gap: 1.25rem; }
       .services-grid { grid-template-columns: 1fr; }
       .s-card.hero-card { grid-row: auto; }
@@ -1064,7 +1093,6 @@
     @media (max-width: 600px) {
       .gallery-masonry { columns: 1; }
       .process-steps { grid-template-columns: 1fr; }
-      .stats-row { grid-template-columns: 1fr; }
     }
 
     /* ── REDESIGN LAYER ───────────────────── */
@@ -1145,7 +1173,6 @@
     .logo-card:hover { box-shadow: none; transform: translateY(-3px); }
     .sec-label { background: #fff; border: 1px solid var(--border); padding: 0.4rem 0.9rem; border-radius: 999px; color: var(--fg); letter-spacing: 0.1em; font-weight: 600; }
     .sec-label::before { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
-    #stats { padding: 5rem 5vw; }
     .stat-num { font-size: clamp(3rem, 5vw, 4.6rem); }
     .f-input, .f-textarea, .f-select { border-radius: 14px; }
 
