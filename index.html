@@ -579,38 +579,40 @@
     .process-steps::before {
       content: '';
       position: absolute;
-      top: 1.9rem;
-      left: calc(12.5% + 1rem);
-      right: calc(12.5% + 1rem);
+      top: calc(1.65rem - 0.5px);
+      left: 12.5%;
+      right: 12.5%;
       height: 1px;
-      background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent));
-      opacity: 0.5;
+      background: linear-gradient(90deg, var(--accent), var(--gold));
+      opacity: 0.6;
+      transform: scaleX(var(--line, 1));
+      transform-origin: left center;
     }
     .p-step {
       text-align: center;
       padding: 0 1.75rem;
     }
     .p-num {
-      width: 3.8rem; height: 3.8rem;
+      width: 3.3rem; height: 3.3rem;
       border-radius: 50%;
-      border: 1px solid var(--border);
-      background: var(--bg);
+      border: 0;
+      background: var(--fg);
+      box-shadow: 0 0 0 7px var(--blue-wash);
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 1.75rem;
       font-family: 'Cormorant Garamond', serif;
       font-weight: 700;
-      font-size: 1rem;
-      color: #3a6fa8;
+      font-size: 0.95rem;
+      color: #fff;
       position: relative;
       z-index: 1;
-      transition: background 0.3s, border-color 0.3s, color 0.3s;
+      transition: background 0.3s, box-shadow 0.3s;
     }
     .p-step:hover .p-num {
-      background: var(--fg);
-      border-color: var(--fg);
-      color: var(--bg);
+      background: var(--gold);
+      box-shadow: 0 0 0 7px rgba(230,79,97,0.18);
     }
     .p-title {
       font-family: 'Cormorant Garamond', serif;
@@ -1141,7 +1143,6 @@
     .t-card { border-color: var(--border); }
     .logo-card { border-radius: 22px; border-color: var(--border); }
     .logo-card:hover { box-shadow: none; transform: translateY(-3px); }
-    .p-num { border-radius: 50%; background: var(--blue-wash); border-color: transparent; color: var(--fg); }
     .sec-label { background: #fff; border: 1px solid var(--border); padding: 0.4rem 0.9rem; border-radius: 999px; color: var(--fg); letter-spacing: 0.1em; font-weight: 600; }
     .sec-label::before { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
     #stats { padding: 5rem 5vw; }
@@ -1527,22 +1528,22 @@
     </div>
 
     <div class="process-steps">
-      <div class="p-step reveal">
+      <div class="p-step">
         <div class="p-num">01</div>
         <h3 class="p-title">Audit & Stratégie</h3>
         <p class="p-text">On analyse votre marché local, vos concurrents et votre audience pour construire une stratégie sur-mesure qui a du sens.</p>
       </div>
-      <div class="p-step reveal">
+      <div class="p-step">
         <div class="p-num">02</div>
         <h3 class="p-title">Création de contenu</h3>
         <p class="p-text">Notre équipe crée des visuels, textes et vidéos qui captivent votre communauté et correspondent à votre identité.</p>
       </div>
-      <div class="p-step reveal">
+      <div class="p-step">
         <div class="p-num">03</div>
         <h3 class="p-title">Publication & Gestion</h3>
         <p class="p-text">Planification optimisée, publication régulière, réponses aux interactions. Votre compte est actif 7j/7.</p>
       </div>
-      <div class="p-step reveal">
+      <div class="p-step">
         <div class="p-num">04</div>
         <h3 class="p-title">Suivi & Optimisation</h3>
         <p class="p-text">Rapport mensuel avec vos vrais KPIs. On ajuste continuellement pour améliorer vos performances.</p>
@@ -1906,7 +1907,7 @@ window.addEventListener('load', () => {
   });
 
   /* Staggered children inside grids */
-  ['.services-grid', '.test-grid', '.process-steps', '.values-grid'].forEach(sel => {
+  ['.services-grid', '.test-grid', '.values-grid'].forEach(sel => {
     const container = document.querySelector(sel);
     if (!container) return;
     const items = container.querySelectorAll('.reveal');
@@ -1918,6 +1919,27 @@ window.addEventListener('load', () => {
       ease: 'power3.out',
     });
   });
+
+  /* Process: the line draws left to right, each step pops in as it is reached */
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const pSteps = gsap.utils.toArray('.p-step');
+    const pWrap = document.querySelector('.process-steps');
+    if (pWrap && pSteps.length) {
+      const nums = pSteps.map(el => el.querySelector('.p-num'));
+      const texts = pSteps.map(el => el.querySelectorAll('.p-title, .p-text'));
+      gsap.set(pWrap, { '--line': 0 });
+      gsap.set(nums, { scale: 0.3, opacity: 0 });
+      gsap.set(texts, { y: 22, opacity: 0 });
+      const tl = gsap.timeline({ scrollTrigger: { trigger: pWrap, start: 'top 80%', once: true } });
+      const t0 = 0.2, draw = 2.1;
+      tl.to(pWrap, { '--line': 1, duration: draw, ease: 'none' }, t0);
+      pSteps.forEach((_, i) => {
+        const t = t0 + (draw * i) / (pSteps.length - 1);
+        tl.to(nums[i], { scale: 1, opacity: 1, duration: 0.55, ease: 'back.out(2.4)' }, t)
+          .to(texts[i], { y: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: 'power3.out' }, t + 0.12);
+      });
+    }
+  }
 
   /* Gallery masonry stagger */
   const galleryItems = document.querySelectorAll('.g-item');
